@@ -1,5 +1,25 @@
-<p>Hello products works, ! <br/>
- this page is print when you click on "Home" or
-   "Search product" button
+<div class="container">
+  <div class="panel panel-primary">
+  <div class = "panel-heading"> LIST OF PRODUCTS </div>
+    <div class ="panel-body">
+      <button class=" btn btn-primary" (click)="onClickGetProduct()"> click to view products</button>
+    </div>
+    <div  class = "panel-body">
+    <table *ngIf="listproducts" class = "table table-striped">
 
-</p>
+      <tr>
+        <th>ID_PRODUIT</th> <th>DESCRIPTION</th>   <th>PRICE </th>   <th>QUANTITY</th>
+      </tr> <Br/>
+       <tr *ngFor=" let p of listproducts._embedded.products" >
+
+         <td>{{p.id}}</td>
+         <td>{{p.description}}</td>
+         <td>{{p.price}}</td>
+         <td>{{p.quantity}}</td>
+
+       </tr>
+
+         </table>
+         </div>
+       </div>
+     </div>
