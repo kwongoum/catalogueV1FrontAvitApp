@@ -8,8 +8,11 @@ import {CatalogueService} from '../services/catalogue.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-   public listproducts:any;
-
+  public listproducts:any;
+  public size: number = 5;
+  public currentPage: number=0;
+  public totalPages :  number;
+  public totalpagesArray:Array<number>;
   constructor(  private catalogueService:CatalogueService ) { }
 
   ngOnInit() {
@@ -17,9 +20,12 @@ export class ProductsComponent implements OnInit {
 
    public  onClickGetProduct( ) {
 
-   this.catalogueService.getProductsService()
+   this.catalogueService.getProductsService(this.currentPage,this.size)
      .subscribe(data=>{
-        this.listproducts=data;
+
+        this.totalPages=data["page"].totalPages;
+        this.totalpagesArray = new Array<number>(this.totalPages);
+       this.listproducts=data;
         }, err =>{
         console.log(err);
         })
