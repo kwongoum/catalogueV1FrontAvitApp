@@ -13,7 +13,7 @@ public host: String = "http://localhost:8080";
   constructor( private httpClient: HttpClient) { }
 
    public getProductsService(p: number,s:number):Observable<any> {
-    return this.httpClient.get(this.host+"/products? page="+p+"&size="+s);
+    return this.httpClient.get(this.host+"/products?page="+p+"&size="+s);
   }
 
 }

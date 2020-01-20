@@ -30,11 +30,16 @@
 </tr>
 
 </table>
+
    <ul *ngIf="totalpagesArray" class=" nav nav-pills">
-     <li *ngFor="let pageIndex of totalpagesArray; let i=index">
-          <a> {{i}}</a>
+     <li class="clickable" [ngClass]="{'active': i== currentPage,
+                      ' ': i!=currentPage
+                    }"
+          *ngFor="let pageIndex of totalpagesArray; let i=index">
+          <a (click)="onPageProducts(i)"> {{i}} </a>
      </li>
    </ul>
+
 </div>
 </div>
 </div>

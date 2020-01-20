@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+
 import {CatalogueService} from '../services/catalogue.service';
 
 @Component({
@@ -18,16 +18,23 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
   }
 
-   public  onClickGetProduct( ) {
 
-   this.catalogueService.getProductsService(this.currentPage,this.size)
+
+   public  onClickGetProduct(){
+    this.catalogueService.getProductsService(this.currentPage,this.size)
      .subscribe(data=>{
-
+       this.listproducts=data;
         this.totalPages=data["page"].totalPages;
         this.totalpagesArray = new Array<number>(this.totalPages);
-       this.listproducts=data;
+
         }, err =>{
         console.log(err);
         })
+  }
+
+
+  onPageProducts(i: number) {
+    this.currentPage =i;
+    this.onClickGetProduct();
   }
 }
