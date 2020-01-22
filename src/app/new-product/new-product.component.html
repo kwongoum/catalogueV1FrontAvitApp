@@ -1,1 +1,52 @@
-<p>new-product works!</p>
+<div class ="col-md-6 col-sm-6 col col-xs-12">
+  <div class="panel panel-default" >
+  <div class= "panel panel panel-heading"> Add a new product !</div>
+    <div class="panel panel-body">
+
+    <form #f="ngForm" (ngSubmit)="onAddProduct(f.value)">
+      <fieldset>
+
+
+        <!--- Description Block --->
+        <div class="form-group">
+          <label >Description</label>
+          <input  class ="form-control" type="text"
+                 id="input_description"
+                 name ="description" ngModel="">
+        </div>
+
+        <!---  price Block --->
+        <div class="form-group">
+          <label >Price</label>
+          <input  class = "form-control"type="number"
+                 id="input_price"
+                 name ="price" ngModel="">
+        </div>
+          <div  class="form-group">
+              <label> Quantity</label>
+            <input  class ="form-control" type="number"
+                   id = "input_quantity"
+                   name="quantity"
+                    ngModel="">
+          </div>
+
+
+
+        <!--- Terms and conditions Block --->
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox"> Confirm that you've read the Terms and
+            Conditions
+          </label>
+        </div>
+
+        <!--- Buttons Block --->
+        <div class="form-group">
+          <button type="reset" class="btn btn-default">Cancel</button>
+          <button type="submit" class="btn btn-success">Submit to add </button>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+</div>

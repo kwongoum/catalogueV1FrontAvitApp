@@ -3,12 +3,14 @@
   <div class = "panel-heading"> LIST OF PRODUCTS </div>
     <div class ="panel-body">
 
-      <button class=" btn btn-primary" (click)="onClickGetProduct()"> click to view products</button> <br/>
+      <button class=" btn btn-primary" (click)="onGetProduct()"> click to view products</button> <br/>
     </div>
+     OR <br/>
     <div>
-      <form>
-        <input type="text" name="name_input_search" id="id_search_product" />
-        <input type="submit" value="Search" />
+      <form #f ="ngForm" (ngSubmit)="onSearch(f.value)" >
+        <label > &nbsp;&nbsp; enter a specific keyword: </label>
+        <input type="text" name="name_input_search" ngModel />
+        <button type ="onSubmit" class="btn btn-primary"> <span class="glyphicon glyphicon-search">  Search</span></button>
       </form>
     </div>
 
@@ -26,6 +28,9 @@
 <td>{{p.description}}</td>
 <td>{{p.price|currency}}</td>
 <td>{{p.quantity}}</td>
+  <td><a type ="button" class ="btn btn-danger list-inline" (click)="onDeleteProduct(p)"> Delete</a></td>
+  <td><a type ="button" class ="btn btn-default"
+         (click)="onEditProduct(p)"> Edit</a></td>
 
 </tr>
 
