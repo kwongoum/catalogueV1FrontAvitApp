@@ -18,9 +18,9 @@ export class ProductsComponent implements OnInit {
   public currentPage: number=0;
   public totalPages :  number;
   public totalpagesArray:Array<number>;
-  private currentkeyWord: string;
-  private form: any;
-  private modee: number=1;
+  public currentkeyWord: string;
+  public form: any;
+  public modee: number=1;
   public currentProduct: Product;
 
   constructor(  private catalogueService:CatalogueService , private router:Router
