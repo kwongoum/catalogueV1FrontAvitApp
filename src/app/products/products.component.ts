@@ -29,8 +29,6 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
    public  onGetProduct(){
     this.catalogueService.getProductsService(this.currentPage,this.size)
      .subscribe(data=>{
@@ -42,9 +40,6 @@ export class ProductsComponent implements OnInit {
         console.log(err);
         })
   }
-
-
-
 
   public  GetProductbyKeyWord( keyWord: string){
 
