@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="panel panel-primary">
+  <div class="panel panel-primary" *ngIf="modee==1">
   <div class = "panel-heading"> LIST OF PRODUCTS </div>
-    <div class ="panel-body">
+    <div class ="panel-body" >
 
       <button class=" btn btn-primary" (click)="onGetProduct()"> click to view products</button> <br/>
     </div>
@@ -29,11 +29,9 @@
 <td>{{p.price|currency}}</td>
 <td>{{p.quantity}}</td>
   <td><a type ="button" class ="btn btn-danger list-inline" (click)="onDeleteProduct(p)"> Delete</a></td>
-  <td><a type ="button" class ="btn btn-default"
-         (click)="onEditProduct(p)"> Edit</a></td>
+  <td><a type ="button" class ="btn btn-primary" (click)="onEditProduct(p)"> Edit</a></td>
 
 </tr>
-
 </table>
 
    <ul *ngIf="totalpagesArray" class=" nav nav-pills">
@@ -47,4 +45,5 @@
 
 </div>
 </div>
+
 </div>

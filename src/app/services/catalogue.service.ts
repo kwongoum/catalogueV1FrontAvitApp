@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {ProductsComponent} from '../products/products.component';
 import {catchError} from 'rxjs/operators';
 import {getIifeBody} from '@angular/compiler-cli/ngcc/src/host/esm5_host';
+import {observableToBeFn} from 'rxjs/internal/testing/TestScheduler';
+import {Product} from '../model/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,10 +29,22 @@ public host: String = "http://localhost:8080";
     return this.httpClient.delete<void>(url);
   }
 
-  public saveRessourceService(url: string , data:any){
-    return  this.httpClient.post(url, data);
+
+  public saveResourceService(url , data):Observable<Product>{
+    return  this.httpClient.post<Product>(url, data);
 
   }
+
+
+
+  updateResourceService(url, data):Observable<Product> {
+    return this.httpClient.put<Product>(url, data);
+}
+
+getRessource(url):Observable<Product> {
+
+  return  this.httpClient.get<Product>(url);
+   }
 }
 
 

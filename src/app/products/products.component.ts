@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import {CatalogueService} from '../services/catalogue.service';
-import {valueReferenceToExpression} from '@angular/compiler-cli/src/ngtsc/annotations/src/util';
+
+import {Product} from '../model/product.model';
+import {ActivatedRoute, Router} from '@angular/router';
+
 
 
 @Component({
@@ -17,7 +20,11 @@ export class ProductsComponent implements OnInit {
   public totalpagesArray:Array<number>;
   private currentkeyWord: string;
   private form: any;
-  constructor(  private catalogueService:CatalogueService ) { }
+  private modee: number=1;
+  public currentProduct: Product;
+
+  constructor(  private catalogueService:CatalogueService , private router:Router
+                , private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
   }
@@ -76,6 +83,31 @@ this.GetProductbyKeyWord(this.currentkeyWord);
   }
 
   onEditProduct(p: any) {
+   //this.currentProduct=p;
+   // let url1:string = "/edit-product/"+btoa(p.id);
 
+    let url:string = p._links.self.href;
+   // let url4:string = "/edit-product/"+p.id;
+    this.router.navigateByUrl("/edit-product/"+btoa(url));
+
+  }
+
+  onUpdateProduct(p: Product){
+    this.currentProduct=p;
+  this.catalogueService.updateResourceService(this.currentProduct,this.currentProduct.id)
+    .subscribe(res=>{
+        console.log(res);
+       this.currentProduct=res;
+          this.modee=1;
+        this.router.navigateByUrl("/products/"+p.id);
+    }, err=>{
+        console.log(err);
+    }
+  )
+  }
+
+
+  onBack(currentProduct: Product) {
+    this.modee=1;
   }
 }

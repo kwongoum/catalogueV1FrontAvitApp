@@ -1,18 +1,15 @@
 <div class ="col-md-6 col-sm-6 col col-xs-12">
   <div class="panel panel-default" >
-  <div class= "panel panel panel-heading"> Add a new product !</div>
-    <div class="panel panel-body">
+    <div class= "panel panel panel-heading"> Add a new product !</div>
+    <div class="panel-body" *ngIf="mode ==1">
 
     <form #f="ngForm" (ngSubmit)="onAddProduct(f.value)">
-      <fieldset>
-
-
         <!--- Description Block --->
         <div class="form-group">
           <label >Description</label>
           <input  class ="form-control" type="text"
                  id="input_description"
-                 name ="description" ngModel="">
+                 name ="description" ngModel>
         </div>
 
         <!---  price Block --->
@@ -20,17 +17,15 @@
           <label >Price</label>
           <input  class = "form-control"type="number"
                  id="input_price"
-                 name ="price" ngModel="">
+                 name ="price" ngModel>
         </div>
           <div  class="form-group">
               <label> Quantity</label>
             <input  class ="form-control" type="number"
                    id = "input_quantity"
                    name="quantity"
-                    ngModel="">
+                    ngModel>
           </div>
-
-
 
         <!--- Terms and conditions Block --->
         <div class="form-group checkbox">
@@ -43,10 +38,31 @@
         <!--- Buttons Block --->
         <div class="form-group">
           <button type="reset" class="btn btn-default">Cancel</button>
-          <button type="submit" class="btn btn-success">Submit to add </button>
+          <button  class="btn btn-success" type="ngSubmit">Submit to add </button>
         </div>
-      </fieldset>
     </form>
     </div>
-  </div>
+     <div class="panel panel-heading">  this product  has been added !</div>
+        <div class=" panel-body"  *ngIf="mode==2">
+
+          <div class="form-group">
+            <label >ID :</label> <label>{{ currentProduct.id}}</label>
+          </div >
+              <div class="form-group">
+                <label >Description:</label> <label>{{currentProduct.description}}</label>
+              </div>
+              <div class="form-group">
+                <label >Price: </label> <label> {{ currentProduct.price}}</label>
+              </div>
+          <div class="form-group">
+            <label > Quantity:</label><label> {{ currentProduct.quantity}}</label>
+          </div>
+          <div class="form-group">
+            <form #f="ngForm" (ngSubmit)="onAddAnotherProduct(f.value)" >
+              <button class="btn btn-success" type ="ngSubmit" > another product ? click here to add it!</button>
+            </form>
+          </div>
+        </div>
+
+   </div>
 </div>
